@@ -4,7 +4,7 @@ import Logo from "./logo";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0f0909] text-white">
+    <footer className="bg-black text-white">
       <div className=" p-[40px_80px] max-xl:p-[30px_40px] max-md:p-[20px_20px]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Logo and Description */}
@@ -150,7 +150,7 @@ const Footer = () => {
                   href="#"
                   className="text-gray-200 hover:text-white transition-colors text-[14px]"
                 >
-                  +971 4 305 5000
+                  +971 0 000 0000
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -171,7 +171,7 @@ const Footer = () => {
                   href="#"
                   className="text-gray-200 hover:text-white transition-colors text-[14px]"
                 >
-                  info@damac.com
+                  info@binghatti.com
                 </a>
               </li>
             </ul>
@@ -245,7 +245,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-gray-800">
           <div className="flex flex-col max-lg:flex-col-reverse md:flex-row justify-between items-center gap-4">
             <p className="text-gray-200 text-[14px] text-center md:text-left">
-              © {new Date().getFullYear()} DAMAC. All rights reserved
+              © {new Date().getFullYear()} BINGHATTI. All rights reserved
             </p>
             <div className="flex gap-6">
               <Link
