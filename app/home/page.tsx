@@ -8,17 +8,17 @@ import AwardSection from "./components/awardSection";
 import WhyInvestSection from "./components/whyInvestSection";
 
 const HomePage = () => {
-    return (
-        <div>
-            <Header />
-            <HeroSection />
-            <AboutSection />
-            <ProjectList />
-            <AwardSection />
-            <WhyInvestSection />
-            <Footer />
-        </div>
-    );
+  return (
+    <div>
+      <Header />
+      <HeroSection />
+      <AboutSection />
+      <ProjectList />
+      <AwardSection />
+      <WhyInvestSection />
+      <Footer />
+    </div>
+  );
 };
 
 export default HomePage;
