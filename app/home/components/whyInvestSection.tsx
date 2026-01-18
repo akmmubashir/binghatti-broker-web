@@ -17,42 +17,36 @@ const WhyInvestSection = () => {
   const investmentReasons = [
     {
       id: 1,
-      icon: "📍",
       title: "Prime Locations",
       description:
         "Strategically located in Dubai's most sought-after neighborhoods with excellent connectivity",
     },
     {
       id: 2,
-      icon: "✨",
       title: "Luxury Design",
       description:
         "World-class architecture and premium finishes that set new standards in luxury living",
     },
     {
       id: 3,
-      icon: "📈",
       title: "Strong ROI",
       description:
         "Consistent capital appreciation and high rental yields in competitive markets",
     },
     {
       id: 4,
-      icon: "🌿",
       title: "Sustainability",
       description:
         "Green building practices and eco-friendly features for sustainable living",
     },
     {
       id: 5,
-      icon: "👥",
       title: "Community",
       description:
         "Vibrant lifestyle amenities and world-class facilities for residents",
     },
     {
       id: 6,
-      icon: "🔒",
       title: "Security & Privacy",
       description:
         "Advanced security systems and 24/7 management for peace of mind",
@@ -87,7 +81,13 @@ const WhyInvestSection = () => {
       // Features stagger
       tl.from(
         featuresRef.current?.querySelectorAll(".feature-card") || [],
-        { y: 40, opacity: 0, stagger: 0.12, duration: 0.6 },
+        {
+          y: 40,
+          opacity: 0,
+          stagger: 0.12,
+          duration: 0.6,
+          clearProps: "opacity,transform",
+        },
         "-=0.1",
       );
 

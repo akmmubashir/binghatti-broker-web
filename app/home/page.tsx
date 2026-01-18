@@ -6,6 +6,7 @@ import AboutSection from "./components/aboutSection";
 import ProjectList from "./components/projectList";
 import AwardSection from "./components/awardSection";
 import WhyInvestSection from "./components/whyInvestSection";
+import ContactSection from "./components/contactSection";
 
 const HomePage = () => {
   return (
@@ -16,6 +17,7 @@ const HomePage = () => {
       <ProjectList />
       <AwardSection />
       <WhyInvestSection />
+      <ContactSection />
       <Footer />
     </div>
   );
