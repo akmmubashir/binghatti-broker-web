@@ -139,7 +139,7 @@ const ProjectList = () => {
   return (
     <section
       ref={containerRef}
-      className="snap-section relative h-dvh overflow-hidden bg-black bg-no-repeat bg-cover bg-center"
+      className="snap-section relative h-screen overflow-hidden bg-black bg-no-repeat bg-cover bg-center"
       style={{
         backgroundImage: `url(${currentProject.image})`,
         // filter: "grayscale(0%) brightness(80%)",
