@@ -22,8 +22,15 @@ const HeroSection = () => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Timeline for entrance animations
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      // Timeline for entrance animations - only trigger on scroll
+      const tl = gsap.timeline({
+        defaults: { ease: "power3.out" },
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 50%",
+          once: true,
+        },
+      });
 
       // Video overlay animation
       tl.from(overlayRef.current, {
@@ -51,6 +58,7 @@ const HeroSection = () => {
           rotateX: -90,
           stagger: 0.2,
           duration: 1,
+          clearProps: "opacity,transform",
         },
         "-=0.4",
       );
@@ -62,6 +70,7 @@ const HeroSection = () => {
           y: 30,
           opacity: 0,
           duration: 0.8,
+          clearProps: "opacity,transform",
         },
         "-=0.5",
       );
@@ -76,7 +85,6 @@ const HeroSection = () => {
         {
           y: 0,
           opacity: 0,
-          // scale: 0,
           stagger: 0.15,
           duration: 0.6,
           clearProps: "opacity",
@@ -92,6 +100,7 @@ const HeroSection = () => {
           opacity: 0,
           stagger: 0.1,
           duration: 0.6,
+          clearProps: "opacity,transform",
         },
         "-=0.3",
       );
@@ -103,15 +112,20 @@ const HeroSection = () => {
           y: -20,
           opacity: 0,
           duration: 0.8,
+          clearProps: "opacity,transform",
         },
         "-=0.5",
       );
 
-      // Continuous animations
-      gsap.to(scrollIndicatorRef.current, {
+      // Continuous animations - separate timeline after entrance
+      const pulseTimeline = gsap.timeline({ repeat: -1 });
+      pulseTimeline.to(scrollIndicatorRef.current, {
         y: 10,
-        repeat: -1,
-        yoyo: true,
+        duration: 1.5,
+        ease: "power1.inOut",
+      });
+      pulseTimeline.to(scrollIndicatorRef.current, {
+        y: 0,
         duration: 1.5,
         ease: "power1.inOut",
       });

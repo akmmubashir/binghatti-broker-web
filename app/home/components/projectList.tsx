@@ -65,21 +65,25 @@ const ProjectList = () => {
         },
       });
 
-      // Entrance animations
-      tl.from(bgRef.current, { opacity: 0, duration: 0.8 });
+      // Entrance animations with clearProps
+      tl.from(bgRef.current, {
+        opacity: 0,
+        duration: 0.8,
+        clearProps: "opacity",
+      });
       tl.from(
         headingRef.current,
-        { y: 40, opacity: 0, duration: 0.8 },
+        { y: 40, opacity: 0, duration: 0.8, clearProps: "opacity,transform" },
         "-=0.4",
       );
       tl.from(
         subtitleRef.current,
-        { y: 20, opacity: 0, duration: 0.6 },
+        { y: 20, opacity: 0, duration: 0.6, clearProps: "opacity,transform" },
         "-=0.4",
       );
       tl.from(
         buttonRef.current,
-        { y: 20, opacity: 0, duration: 0.6, clearProps: "opacity" },
+        { y: 20, opacity: 0, duration: 0.6, clearProps: "opacity,transform" },
         "-=0.3",
       );
 

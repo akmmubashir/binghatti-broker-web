@@ -30,6 +30,7 @@ const ContactSection = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
+          once: true,
         },
       });
 
@@ -51,7 +52,7 @@ const ContactSection = () => {
           ease: "power3.out",
         });
       } else {
-        // Desktop: Image slides from full width to left side
+        // Desktop: Image slides from full width to left side with 1 second delay
         gsap.set(imageWrapperRef.current, {
           width: "100%",
         });
@@ -60,6 +61,9 @@ const ContactSection = () => {
           opacity: 0,
           x: 50,
         });
+
+        // Add 1 second delay before image animation starts
+        tl.to({}, { duration: 1 });
 
         tl.to(imageWrapperRef.current, {
           width: "50%",
@@ -97,6 +101,7 @@ const ContactSection = () => {
           opacity: 0,
           stagger: 0.1,
           duration: 0.5,
+          clearProps: "opacity,transform",
         },
         "-=0.2",
       );
@@ -153,7 +158,7 @@ const ContactSection = () => {
           className="hidden md:block relative h-full overflow-hidden"
         >
           <Image
-            src="/assets/common/about.webp"
+            src="/assets/common/contact.webp"
             alt="Contact Binghatti"
             fill
             className="object-cover"

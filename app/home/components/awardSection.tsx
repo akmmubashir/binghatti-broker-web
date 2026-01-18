@@ -73,30 +73,72 @@ const AwardSection = () => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({
+        defaults: { ease: "power3.out" },
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
 
       // Overlay fade
-      tl.from(overlayRef.current, { opacity: 0, duration: 0.8 });
+      tl.from(overlayRef.current, {
+        opacity: 0,
+        duration: 0.8,
+        clearProps: "opacity",
+      });
 
       // Heading + divider + paragraph
-      tl.from(headingRef.current, { y: 40, opacity: 0, duration: 0.8 });
+      tl.from(headingRef.current, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        clearProps: "opacity,transform",
+      });
       tl.from(
         dividerRef.current,
-        { scaleX: 0, opacity: 0, transformOrigin: "center", duration: 0.6 },
+        {
+          scaleX: 0,
+          opacity: 0,
+          transformOrigin: "center",
+          duration: 0.6,
+          clearProps: "opacity,transform",
+        },
         "-=0.4",
       );
       tl.from(
         paragraphRef.current,
-        { y: 20, opacity: 0, duration: 0.6 },
+        { y: 20, opacity: 0, duration: 0.6, clearProps: "opacity,transform" },
         "-=0.2",
       );
 
-      // Cards stagger
+      // Cards stagger with entrance animation
       tl.from(
         cardsRef.current?.querySelectorAll(".about-card") || [],
-        { y: 30, opacity: 0, stagger: 0.15, duration: 0.6 },
+        {
+          y: 40,
+          opacity: 0,
+          scale: 0.85,
+          stagger: 0.08,
+          duration: 0.6,
+          clearProps: "opacity,transform",
+        },
         "-=0.1",
       );
+
+      // Award logo reveal with rotation effect
+      cardsRef.current?.querySelectorAll("img").forEach((img, index) => {
+        gsap.from(img, {
+          opacity: 0,
+          scale: 0.7,
+          rotation: -15,
+          duration: 0.8,
+          ease: "back.out",
+          delay: index * 0.05,
+          clearProps: "opacity,transform",
+        });
+      });
 
       // Parallax effect on scroll
       gsap.to(videoRef.current, {
@@ -183,14 +225,14 @@ const AwardSection = () => {
             {awardList.map((award) => (
               <div
                 key={award.id}
-                className="about-card col-span-2 max-xl:col-span-3 max-lg:col-span-5 flex justify-center items-center"
+                className="about-card col-span-2 max-xl:col-span-3 max-lg:col-span-5 flex justify-center items-center group cursor-pointer transition-all duration-500 hover:scale-110 hover:brightness-125"
               >
                 <Image
                   src={award.img}
                   alt={award.title}
                   width={300}
                   height={200}
-                  className="w-full h-14 max-lg:h-10 object-contain"
+                  className="w-full h-14 max-lg:h-10 object-contain transition-all duration-500 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]"
                 />
               </div>
             ))}

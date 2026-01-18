@@ -22,30 +22,88 @@ const AboutSection = () => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({
+        defaults: { ease: "power3.out" },
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
 
       // Overlay fade
-      tl.from(overlayRef.current, { opacity: 0, duration: 0.8 });
+      tl.from(overlayRef.current, {
+        opacity: 0,
+        duration: 0.8,
+        clearProps: "opacity",
+      });
 
       // Heading + divider + paragraph
-      tl.from(headingRef.current, { y: 40, opacity: 0, duration: 0.8 });
+      tl.from(headingRef.current, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        clearProps: "opacity,transform",
+      });
       tl.from(
         dividerRef.current,
-        { scaleX: 0, opacity: 0, transformOrigin: "center", duration: 0.6 },
+        {
+          scaleX: 0,
+          opacity: 0,
+          transformOrigin: "center",
+          duration: 0.6,
+          clearProps: "opacity,transform",
+        },
         "-=0.4",
       );
       tl.from(
         paragraphRef.current,
-        { y: 20, opacity: 0, duration: 0.6 },
+        { y: 20, opacity: 0, duration: 0.6, clearProps: "opacity,transform" },
         "-=0.2",
       );
 
-      // Cards stagger
+      // Cards stagger with clearProps to ensure visibility
       tl.from(
         cardsRef.current?.querySelectorAll(".about-card") || [],
-        { y: 30, opacity: 0, stagger: 0.15, duration: 0.6 },
+        {
+          y: 30,
+          opacity: 0,
+          stagger: 0.15,
+          duration: 0.6,
+          clearProps: "opacity,transform",
+        },
         "-=0.1",
       );
+
+      // Number count-up animation for stats - part of timeline
+      const statNumbers =
+        cardsRef.current?.querySelectorAll(".stat-number") || [];
+      statNumbers.forEach((stat, index) => {
+        const element = stat as HTMLElement;
+        const text = element.textContent || "";
+        const numberMatch = text.match(/(\d+)/);
+
+        if (numberMatch) {
+          const endValue = parseInt(numberMatch[1]);
+          const suffix =
+            (text.includes("K") ? "K" : "") + (text.includes("+") ? "+" : "");
+
+          const counterObj = { value: 0 };
+          tl.to(
+            counterObj,
+            {
+              value: endValue,
+              duration: 2.5,
+              ease: "power2.out",
+              onUpdate: function () {
+                element.textContent = Math.floor(counterObj.value) + suffix;
+              },
+              clearProps: "none",
+            },
+            index === 0 ? "-=0.3" : "-=0.2",
+          );
+        }
+      });
 
       // CTAs stagger
       tl.from(
@@ -55,6 +113,7 @@ const AboutSection = () => {
           opacity: 0,
           stagger: 0.1,
           duration: 0.5,
+          clearProps: "opacity,transform",
         },
         "-=0.2",
       );
@@ -140,20 +199,26 @@ const AboutSection = () => {
             ref={cardsRef}
             className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
           >
-            <div className="about-card p-6 border border-white/20 bg-white/5 backdrop-blur-md text-white">
-              <div className="text-4xl font-extralight mb-2">50+</div>
+            <div className="about-card p-6 border border-white/20 bg-white/5 backdrop-blur-md text-white transition-all duration-500 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] cursor-pointer">
+              <div className="stat-number text-4xl font-extralight mb-2">
+                50+
+              </div>
               <div className="text-xs uppercase tracking-[0.3em] text-white/60">
                 Projects
               </div>
             </div>
-            <div className="about-card p-6 border border-white/20 bg-white/5 backdrop-blur-md text-white">
-              <div className="text-4xl font-extralight mb-2">15K+</div>
+            <div className="about-card p-6 border border-white/20 bg-white/5 backdrop-blur-md text-white transition-all duration-500 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] cursor-pointer">
+              <div className="stat-number text-4xl font-extralight mb-2">
+                15K+
+              </div>
               <div className="text-xs uppercase tracking-[0.3em] text-white/60">
                 Units Delivered
               </div>
             </div>
-            <div className="about-card p-6 border border-white/20 bg-white/5 backdrop-blur-md text-white">
-              <div className="text-4xl font-extralight mb-2">20+</div>
+            <div className="about-card p-6 border border-white/20 bg-white/5 backdrop-blur-md text-white transition-all duration-500 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] cursor-pointer">
+              <div className="stat-number text-4xl font-extralight mb-2">
+                20+
+              </div>
               <div className="text-xs uppercase tracking-[0.3em] text-white/60">
                 Years Legacy
               </div>
