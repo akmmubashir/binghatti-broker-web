@@ -36,7 +36,7 @@ const Header = () => {
     <div
       className={`fixed w-full left-0 top-0 z-50 transition-transform duration-300 ${
         visible ? "translate-y-0" : "-translate-y-full"
-      } ${scrolled ? "bg-gray-950/20 backdrop-blur-[3px]" : "bg-transparent"}`}
+      } ${scrolled ? "bg-black/20 backdrop-blur-[3px]" : "bg-transparent"}`}
     >
       <div
         className={`p-[40px_100px] max-xl:p-[30px_60px] max-md:p-[20px_20px] flex items-center justify-between`}
