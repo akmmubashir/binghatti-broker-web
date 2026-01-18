@@ -39,7 +39,7 @@ const HeroSection = () => {
           opacity: 0,
           duration: 0.8,
         },
-        "-=0.5"
+        "-=0.5",
       );
 
       // Heading animation with split effect
@@ -52,7 +52,7 @@ const HeroSection = () => {
           stagger: 0.2,
           duration: 1,
         },
-        "-=0.4"
+        "-=0.4",
       );
 
       // Subtitle animation
@@ -63,14 +63,14 @@ const HeroSection = () => {
           opacity: 0,
           duration: 0.8,
         },
-        "-=0.5"
+        "-=0.5",
       );
 
       // CTA buttons stagger animation
       gsap.set(ctaRef.current?.querySelectorAll("button") || [], {
         clearProps: "all",
       });
-      
+
       tl.from(
         ctaRef.current?.querySelectorAll("button") || [],
         {
@@ -81,7 +81,7 @@ const HeroSection = () => {
           duration: 0.6,
           clearProps: "opacity",
         },
-        "-=0.4"
+        "-=0.4",
       );
 
       // Stats animation
@@ -93,7 +93,7 @@ const HeroSection = () => {
           stagger: 0.1,
           duration: 0.6,
         },
-        "-=0.3"
+        "-=0.3",
       );
 
       // Scroll indicator animation
@@ -104,7 +104,7 @@ const HeroSection = () => {
           opacity: 0,
           duration: 0.8,
         },
-        "-=0.5"
+        "-=0.5",
       );
 
       // Continuous animations
@@ -144,11 +144,11 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="h-dvh relative overflow-hidden">
-      <ContentWrapper
-        maxwidth="max-w-full mx-auto"
-        className="h-full"
-      >
+    <div
+      ref={containerRef}
+      className="snap-section h-dvh relative overflow-hidden"
+    >
+      <ContentWrapper maxwidth="max-w-full mx-auto" className="h-full">
         {/* video fixed section */}
         <video
           ref={videoRef}
@@ -172,18 +172,16 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
 
         {/* content section */}
-        <div className="relative z-10 flex flex-col gap-y-10 items-center justify-center h-full px-6">
-
-
+        <div className="relative z-10 flex flex-col gap-y-10 max-md:gap-y-6 items-center justify-center h-full px-6">
           {/* Main Heading with split lines */}
           <h1
             ref={headingRef}
             className="text-center max-w-7xl overflow-hidden"
           >
-            <span className="block hero-text-line text-[100px] max-xl:text-[80px] max-lg:text-[60px] max-md:text-[42px] font-light leading-none tracking-[-0.02em] text-white/95">
+            <span className="block hero-text-line text-[100px] max-xl:text-[80px] max-lg:text-[60px] max-md:text-[36px] font-light leading-none max-lg:leading-tight tracking-[-0.02em] text-white/95">
               Luxury Real Estate
             </span>
-            <span className="block hero-text-line text-[100px] max-xl:text-[80px] max-lg:text-[60px] max-md:text-[42px] font-extralight leading-none tracking-[-0.02em] mt-4 text-white drop-shadow-[0_0_80px_rgba(255,255,255,0.3)]">
+            <span className="block hero-text-line text-[100px] max-xl:text-[80px] max-lg:text-[60px] max-md:text-[36px] font-extralight leading-none max-lg:leading-tight tracking-[-0.02em] mt-4 max-lg:mt-0 text-white drop-shadow-[0_0_80px_rgba(255,255,255,0.3)]">
               Redefined
             </span>
           </h1>
@@ -200,14 +198,17 @@ const HeroSection = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div ref={ctaRef} className="flex gap-6 opacity-100">
-            <button className="group cursor-pointer relative px-12 py-5 bg-white text-black font-medium rounded-none overflow-hidden transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] hover:scale-[1.02] opacity-100">
+          <div
+            ref={ctaRef}
+            className="flex flex-wrap gap-6 max-md:gap-4 justify-center opacity-100"
+          >
+            <button className="group cursor-pointer relative px-12 py-5 max-md:px-8 max-md:py-3 max-lg:px-20 bg-white text-black font-medium rounded-none overflow-hidden transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] hover:scale-[1.02] opacity-100">
               <span className="relative z-10 tracking-widest text-sm uppercase">
                 Explore Projects
               </span>
               <div className="absolute inset-0 bg-linear-to-r from-white via-gray-100 to-white transform -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             </button>
-            <button className="group cursor-pointer relative px-12 py-5 bg-transparent border border-white/40 text-white font-medium rounded-none backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-white hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] opacity-100">
+            <button className="group cursor-pointer relative px-12 py-5 max-md:px-8 max-md:py-3 bg-transparent border border-white/40 text-white font-medium rounded-none backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-white hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] opacity-100">
               <span className="relative z-10 flex items-center gap-3 tracking-widest text-sm uppercase">
                 Contact Us
                 <svg
@@ -226,39 +227,6 @@ const HeroSection = () => {
               </span>
               <div className="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </button>
-          </div>
-
-          {/* Premium Stats Section */}
-          <div
-            ref={statsRef}
-            className="flex flex-wrap gap-16 max-md:gap-10 justify-center text-center"
-          >
-            <div className="stat-item group">
-              <div className="text-5xl max-md:text-4xl font-extralight text-white mb-2 group-hover:scale-110 transition-transform duration-300">
-                50<span className="text-3xl">+</span>
-              </div>
-              <div className="text-white/50 text-[11px] uppercase tracking-[0.3em] font-light">
-                Projects
-              </div>
-            </div>
-            <div className="w-px h-16 bg-linear-to-b from-transparent via-white/20 to-transparent" />
-            <div className="stat-item group">
-              <div className="text-5xl max-md:text-4xl font-extralight text-white mb-2 group-hover:scale-110 transition-transform duration-300">
-                15K<span className="text-3xl">+</span>
-              </div>
-              <div className="text-white/50 text-[11px] uppercase tracking-[0.3em] font-light">
-                Units Delivered
-              </div>
-            </div>
-            <div className="w-px h-16 bg-linear-to-b from-transparent via-white/20 to-transparent" />
-            <div className="stat-item group">
-              <div className="text-5xl max-md:text-4xl font-extralight text-white mb-2 group-hover:scale-110 transition-transform duration-300">
-                20<span className="text-3xl">+</span>
-              </div>
-              <div className="text-white/50 text-[11px] uppercase tracking-[0.3em] font-light">
-                Years Legacy
-              </div>
-            </div>
           </div>
 
           {/* Premium Scroll Indicator */}
