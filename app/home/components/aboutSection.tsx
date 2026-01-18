@@ -88,7 +88,7 @@ const AboutSection = () => {
   return (
     <section
       ref={containerRef}
-      className="snap-section relative h-dvh overflow-hidden"
+      className="snap-section relative h-screen overflow-hidden"
     >
       {/* Background image */}
       <div ref={bgRef} className="absolute inset-0 -z-10">
